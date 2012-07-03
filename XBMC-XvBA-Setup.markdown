@@ -172,6 +172,7 @@ My telly (Panasonic 32") came with a native resolution of 1360x768 - was pleasan
 
 ## So where does all this get us
 After all this, it makes a sea change in the overall experience:
+
 1. XBMC idles at 15 - 20% cpu utilization. During video playback, stil stays at a comfy 40% - 50% while playing 720p/1080p videos
 1. Browsers (Chrome and FF) open near instantly; browsing experience is better than my desktop and page loads, tab switches etc feel much nimbler than on my desktop (AMD 6 core, 12G monster running Win 7x64)
 1. Total cost - USD 180
