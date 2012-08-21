@@ -1,0 +1,27 @@
+"=========== Meta ============
+"StrID : 495
+"Title : Microsoft Releases Git TFS integration tool
+"Slug  : Microsoft-Releases-Git-TFS-integration-tool
+"Cats  : Tools, Git, TFS
+"Tags  : Tools,git,tfs
+"=============================
+"EditType   : post
+"EditFormat : Markdown
+"TextAttach : /home/wpcom/public_html/wp-content/blogs.dir/8fe/814317/files/2012/08/wpid-homewpcompublic_htmlwp-contentblogs-dir8fe814317files201208wpid-homewpcompublic_htmlwp-contentblogs-dir8fe814317files201208vimpress_503392f6_mkd.odt
+"========== Content ==========
+
+Microsoft  released a cross platform Git TFS integration tool [Git TF](http://http://gittf.codeplex.com/)!! It's definitely a good step and acknowledgement about the mindshare that Git has.  
+I took it for a spin - the integration is supposed to be cross platform - so that it should work on cygwin also. However, the first time I tried, it did not and had to tweak the script a little. 
+
+In the script `<install folder>/git-tf`
+[sourcecode lang="shell"]
+    # On cygwin and mingw32, simply run the cmd script, otherwise we'd have to
+    # figure out how to mangle the paths appropriately for each platform
+    if [ "$PLATFORM" = "cygwin" -o "$PLATFORM" = "mingw32" ]; then
+        #exec cmd //C "$0.cmd" "$@"                 #Orig
+        exec cmd /C "$(cygpath -aw "$0.cmd")" "$@"  #Changed
+    fi
+[/sourcecode]
+
+Anyway, after that, things did seem to work - the only issue is that your windows domain password is echoed on the cygwin console :(... other than that minor irritant, I was able to clone the project and work on it using the Git integration. Going to try it out some more over the next few days and will post if find anything more.  THis is definitely a great step from MS - and if this works properly, it will almost make working with TFS source control much much bearable :D
+
