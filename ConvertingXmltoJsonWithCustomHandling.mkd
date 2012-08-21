@@ -1,0 +1,121 @@
+"=========== Meta ============
+"StrID : 508
+"Title : Converting xml to json with a few nice touches
+"Slug  : Converting-xml-to-json-with-a-few-nice-touches
+"Cats  : Xml,json, programming, browser
+"Tags  : xml, json, programming, browser
+"=============================
+"EditType   : post
+"EditFormat : Markdown
+"TextAttach : /home/wpcom/public_html/wp-content/blogs.dir/8fe/814317/files/2012/08/wpid-homewpcompublic_htmlwp-contentblogs-dir8fe814317files201208wpid-homewpcompublic_htmlwp-contentblogs-dir8fe814317files201208wpid-homewpcompublic_htmlwp-contentblogs-dir8fe814317files201208wpid-hom5.odt
+"========== Content ==========
+
+During my recent outings in heavyweight programming, one of the things we needed to do was converting a large XML structure from the server to JSON object on the browser to facilitate easy manipulation/inspection.
+
+Also, the XML from the server was not the nice kind - what I mean is that tag names were consistent - but the content was wildly inconsistent. For ex, all
+of the following were recd:
+
+[sourcecode lang="xml"]
+    <!-- different variations of a particular tag -->
+    <BgSize>100,23</BgSize>
+    <BgSize>0,0</BgSize>
+    <BgSize>,</BgSize>
+[/sourcecode]
+Ideally, in this case, we wanted to parse and validate the node (and all its different variations)  and convert it to an X,Y pair only if it was a valid data in it.
+
+The other reason was that a lot of the nodes really had structured data crammed into a single tag - which we ideally wanted parsed as a javascript object so that we could manipulate it easily
+
+[sourcecode lang="xml"]
+    <!-- xml data with structured content -->
+    <!-- font, size, color, bold, italic-->
+    <Font>Arial;Lucida,14,0x0044,True,False</Font>
+[/sourcecode]
+
+So that brought up a search for the best way to convert XML to JSOn -and
+of course [stackoverflow had a question](http://http://stackoverflow.com/questions/1773550/xml-json-conversion-in-javascript). THe [article in the answer](http://http://www.xml.com/pub/a/2006/05/31/converting-between-xml-and-json.html) makes for very interesting reading into all the different conditions that have to be handled. The associated script at [http://goessner.net/download/prj/jsonxml/](http://goessner.net/download/prj/jsonxml/) is the solution I picked.
+
+Really not much going on below other than to use the xml2json function to convert the xml to a raw json object.
+[sourcecode lang="ruby"]
+    @parseXML2Json: (xmlstr) -\>
+        log xmlstr
+        json = $.parseJSON (xml2json $.parseXML (xmlstr))
+        destObj = Utils.\_\_parseTypesInJson(json)
+        log "raw and parsed objects", json, destObj
+        return destObj
+[/sourcecode]
+But now to the more interesting part - once the xml is converted to a JSON, we need to do our magic on top of it - of applying validations and conversions.  This is where the Utils.\_\_parseTypesInJson method comes in
+
+What we're doing here is walking through the JSON object recursively. At each step, we keep track of the path of the xml that we have descended into so that we can check the path and based on the path, apply validations or conversions.  At each step, we also need to check the type of JSOn object we're dealing with - starting with `undefined`, `null`, `string`, `array` or `object`
+
+If its a string, we further delegate to a \_\_parseString function to convert the string to an object if needed. 
+
+[sourcecode lang="ruby"]
+    @\_\_parseTypesInJson: (obj, path = "") -\>
+        if typeof obj is "undefined"
+            return undefined
+        else if obj is null
+            return null
+        else if typeof obj is "string"
+            newObj =  Utils.\_\_parseString(obj, path)
+            validator = \_.find Utils.CUSTOM_VALIDATORS, (v)-\>
+                                                            v.regex.test path
+            return validator.fn(newObj)  if validator?
+            return newObj
+        else if Object.prototype.toString.call(obj) is '[object Array]'
+            destObj = (Utils.\_\_parseTypesInJson(o, path) for o,i in obj)
+            destObj = \_.reject destObj,  (obj) -\>
+                                                obj == null
+            return destObj
+        else if typeof obj is "object"
+            destObj = {}
+            destObj[k]  = Utils.\_\_parseTypesInJson(obj[k],  "#{path}.#{k}") for k of obj
+            validator = \_.find Utils.CUSTOM_VALIDATORS, (v)-\>
+                                                            v.regex.test path
+            return validator.fn(obj)  if validator?
+            return destObj
+        else
+            return obj
+[/sourcecode]
+At each step, once the object is formed, we see if there's a custom validator defined in the array of custom Validators.  Each validator is a regex and a callback function - if the regex matches the path, then the callback is passed the json object which it may manipulate before returning
+
+[sourcecode lang="ruby"]
+    @CUSTOM_VALIDATORS = [ choice =
+                                regex: /choice$/
+                                fn: (obj)-\>
+                                    if obj["#text"]?
+                                        return obj
+                                    else 
+                                        log "returning null"
+                                        return null
+                        ]
+[/sourcecode]
+
+
+[sourcecode lang="ruby"]
+    @\_\_parseString : (str,  path) -\>
+        if not str?
+            return str
+        if \_.any(Utils.SKIP_STRING_PARSING_REGEXES, (r)-\>
+                                                    r.test path)
+            log "Skipping string parsing for:" , path, str
+            return  str
+        if str
+            if /^\d+$/.test str 
+                return parseInt str 
+            else if /^\d+,\d+$/.test str
+                [first,second] = str.split(",")
+                return  {"x": parseInt(first), "y": parseInt(second)}
+            else if str == ','
+                return null
+            else if /^true$/i.test str
+                return true
+            else if /^false$/i.test str
+                return false
+            else if   /^[^,]+,\d+,(0x[0-9a-f]{0,6})?,((True|False),(True|False))?$/i.test str
+                log "Matched font: ", str
+                return  Utils.parseFontSpec(str) 
+            else
+                return str
+        else 
+            return str
+[/sourcecode]
