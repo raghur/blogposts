@@ -1,0 +1,39 @@
+"=========== Meta ============
+"StrID : 539
+"Title : Android WordHero - product lessons
+"Slug  : android-wordHero-product-lessons
+"Cats  :  
+"Tags  : android, mobile, gaming, product development
+"=============================
+"EditType   : post
+"EditFormat : Markdown
+"TextAttach : wpid553-vimpress_505cc764_mkd.odt
+"========== Content ==========
+
+So, yesterday I figured that now I'm an addict.. fully and totally to something called [wordhero](https://play.google.com/store/apps/details?id=com.rhs.wordhero) on my phone... it's one of those games where you have a 4x4 grid of letters and you need to find as many words as you can within 2 mins. Nothing special... and there are tons of look alikes and also rans on the Google Play store. Even installed some of them and then removed them... 
+
+So what's different? Turns out that there's quite a few things - and  apart from one, they're all at the detail level.  The most significant one is that there are its online only and everyone's solving the same grid at the same time - so you get to see your ranking at the end. No searching for opponents, no clicking - just every game. 
+Apart from that, the main game idea is the same (form words on a 4x4 grid) so  details are the only place where one can innovate... reminds me of Jeff Atwood's post that [a product is nothing but a collection of details.](http://www.codinghorror.com/blog/2012/05/this-is-all-your-app-is-a-collection-of-tiny-details.html) 
+
+So what are these details?
+
+ 1. Its online only. You can play only if you have an Internet connection.. otherwise, scoot!
+ 1. The information level and detail is just right: Tracing through the letters highlights the whole word; If you find a word, you see green; wrong word, red; dupe - yellow. At 10s, there's a warning been upto 5s. Not down to 0... so it warns - but doesn't distract. Simple. Effective. Efficient. Brillant!
+
+ Now sample the competition:
+
+ 1. Tracing - line through the letters, shaky squiggly letters when you pass over them and other sorts of UI idiocy, grid that's too small, grid that isn't a square, word check indicators at some other place. Sure, some of this is debatable..esp the ones around the bells and whistles. They looks great the first time, the second time and a few more times after that. By the time you hit the tenth time (if you do ), you start hating it.
+ 2. Offline mode - this is counter intuitive.. in fact, after playing wordhero, I ran to find one which had an offline mode. Once I found it though, surprisingly, I did not like it.. Turns out that there's little thrill in forming words on a grid; the thrill is in seeing where you stand and if you're improving.
+ 3. Timed mode - pretenders to the throne have untimed modes, customizable timers and so on. Didn't work for me - 2 minutes is that absolute sweet spot where you can grab a game anytime... and have that deadline adrenaline rush work for you... Thought I'd do great on the untimed games - but while I scored more, it wasn't significantly more. More importantly, it was missing the fun. Turns out that we want to see where we rank far more than we want to form words :D
+
+So after promising myself one last game at 11 in the night yesterday and ending up playing up to 12:30 AM, I tore myself away from this satanic game. Kept the phone far away to ensure that I don't pick it up again in the middle of the night and started thinking what makes wordhero tick. There's nothing earth shaking about the reasons - but the effect of getting it right is surprising:
+
+ 1. Figure out what will tickle the right pleasure centers - and optmize like hell for that: This is hard... in wordhero, this is the global rankings per game and the stats... optimizing for this means that you take away offline mode totally. That isn't a small decision - especially when an offline mode is  easy to implement and feels like giving the user 'more'. Tough to argue against it too - but as I've seen myself - something like that will kill the multiplier effect of seeing a large number of people play. Chances are, your users dont know that either - so no point asking them. Apple seems to have figured this out very well.
+ 1. Keep the UI simple and efficient - and show me what I need when I need it: Should look good for the casual user. For power users, it should be efficient and not irritating... so keep all those nice bells and whistles under control.
+ 1. Keep the options simple - I like options.. I like options more than what your average joe likes them... most of the times, I've seen  the options that you didn't know were there... but when you're designing a game that's 2:30 minutes from start to finish, I don't want to think about options. More importantly, don't ask me questions about it.. just start the damn game...
+
+So does it mean that WordHero's perfect? Far from it - but its successful by anyone's measure. If you're looking for perfection, you won't ever launch :). Some of the stuff that I'm sure they'll get to at some point
+
+ 1. Better explanation of the stats
+ 1. Charts/trends  over the stats instead of only the current value
+ 1. Better explanation of some of the UI color coding on the results screen.
