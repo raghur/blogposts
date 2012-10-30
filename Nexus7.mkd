@@ -1,0 +1,52 @@
+"=========== Meta ============
+"StrID : 567
+"Title : Nexus 7 - First impressions and tips and tricks
+"Slug  : nexus-7-first-impressions-and-tips-and-tricks
+"Cats  : 
+"Tags  : Android,Nexus7,Tips,Review
+"=============================
+"EditType   : post
+"EditFormat : Markdown
+"TextAttach : wpid569-vimpress_506bdff2_mkd.odt
+"========== Content ==========
+
+So I got my Dad the 8GB Nexus 7. This is an awesome tablet - exactly what a good tablet should be. The UI is buttery smooth and things just fly. The hardware is not a compromise, excellent price point and overall a superb experience.
+
+Of course, there are some things to deal with like 8 GB storage,lack of mobile data connectivity, lack of expandable storage and no rear camera. These aren't issues at all as far as I'm concerned.
+
+If I'm traveling with the tablet, then I always have the phone's 3G data to tether to using WiFi tethering.  The 8GB storage is only an issue if you're playing the heavyweight games or want to carry all your videos or a ton of movies with you. Given the 8GB storage, I'm more than happy to load up a few movies/music before travel. Provided you have a good way to get files/data in and  out of the computer and are OK with not carrying your complete library with you always, you don't have to worry about the storage. A camera though would be nice - but then hey - you can't have everything your way :).
+
+File transfer to/from PC
+-------------------------------
+
+Which brings us to the topic of file transfers to/from your PC. Now wifi is really the best way to go - and I couldn't find a way to make WiFi direct work with Windows 7. So for now, [Connectify](http://http://www.connectify.me/) seems to be the best option. It runs in the background on your PC and makes your PC's wireless card publish its own Wireless network. You can connect to this network from your phone and if you share folders on your PC, you're set to move data around.
+
+Now, on the Android side, [ES file explorer](http://https://play.google.com/store/apps/details?id=com.estrongs.android.pop&hl=en) is free and gets the job done from a file management/copying/moving perspective. I also tried [File Expert](http://https://play.google.com/store/apps/details?id=xcxin.filexpert&feature=search_result#?t=W251bGwsMSwxLDEsInhjeGluLmZpbGV4cGVydCJd) but its more cumbersome. ES excels in multiple file selection and copying.
+
+Ebooks
+-------------------------------
+
+The one area where the N7 excels is for reading books. The form factor and weight are just right for extended reading sessions. However, Google Play books doesn't work in India and so you need an alternate app. I tried out [Moon+ Reader](https://play.google.com/store/apps/details?id=com.flyersoft.moonreader&feature=search_result#?t=W251bGwsMSwxLDEsImNvbS5mbHllcnNvZnQubW9vbnJlYWRlciJd), [FBReader](https://play.google.com/store/apps/details?id=org.geometerplus.zlibrary.ui.android&feature=search_result#?t=W251bGwsMSwxLDEsIm9yZy5nZW9tZXRlcnBsdXMuemxpYnJhcnkudWkuYW5kcm9pZCJd) and [Reader+](https://play.google.com/store/apps/details?id=me.jetho.ebook&feature=search_result#?t=W251bGwsMSwxLDEsIm1lLmpldGhvLmVib29rIl0.) - and out of the lot, FBReader was the best. Moon+ has a nicer UI but choked on some of my Ebooks. Reader+ didn't get the tags right and felt a little clunky. FB reader provided the smoothest experience of the lot. I'm already through half of my first book - and did not have any issues. I have a decent collection of e-books on my PC but once I copied them to the N7, all the meta data was messed up. Editing metadata and grabbing covers is a pain on the tablet and best done on the PC. 
+
+This is where Calibre comes in - this is a full blown ebook library management app. It does a great job of keeping your ebooks organized and editing the metadata on them. It can also fetch metadata and covers from Amazon and google and update your collection. Once you're done, transferring to the N7 is a little tricky. The first time, I just copied the library over to the N7 - but N7 showed each book thrice. Some troubleshooting later, found that the best way was to create an export folder and use teh 'Connect to Folder' feature to mount it as a destination. Then you can select all the books you want and use the 'Send to destination in one format' to publish EPub format to the folder. This generates one epub file per book with the metadata and covers embedded in it and you can then copy this folder over to the N7's Books folder using ESFileExplorer
+
+Playing movies on your N7 over WIFI
+-------------------------------
+My movie collection is on XBMC - and XBMC is DLNA/uPNP compatible. Dive into XBMC system settings and make turn on the uPnP/DLNA services. Then on the N7, you can use [uPnPlay](https://play.google.com/store/apps/details?id=cx.hoohol.silanoid&feature=search_result#?t=W251bGwsMSwxLDEsImN4Lmhvb2hvbC5zaWxhbm9pZCJd). For playing video, it relies on having a video player app isntalled. I like [MXplayer](https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad&feature=related_apps#?t=W251bGwsMSwxLDEwOSwiY29tLm14dGVjaC52aWRlb3BsYXllci5hZCJd). Don't forget to also install the HW Player codec for ARM V7 and to turn on HW decoding in the settings.
+
+
+Playing movies on your TV from the N7
+-------------------------------
+
+You wont be doing much of this as there isn't a rear camera - but if you do decide to take a video or pics from the N7's FFC, then you can use the uPnPlay to project them on to your TV (that is, provided you have a DLNA/uPnP compatible TV or compliant media center hooked to your TV)
+For XBMC, turn on uPnp in settings and you're done. XBMC should be able to discover your tablet and you'll be able to browse and play videos.
+If you'd rather use the table to control what's played on XBMC, then turn on the setting to allow control via uPnP in XBMC settings. Now, in uPnPlay you can select XBMC as the play to device and playing any video/song, plays it on the tv.
+
+
+That's all for now... I'm loving this tablet and the stuff it can do... looks like I'd be buying a few more soon :)
+
+
+
+
+
+

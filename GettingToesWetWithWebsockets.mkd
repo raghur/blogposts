@@ -1,0 +1,38 @@
+"=========== Meta ============
+"StrID : 560
+"Title : Websocket server using Jetty/Cometd
+"Slug  : websocket-server-using-jettycometd
+"Cats  : Uncategorized
+"Tags  : java,web
+"=============================
+"EditType   : post
+"EditFormat : Markdown
+"TextAttach : vimpress_5062ad68_mkd.odt
+"========== Content ==========
+
+So I just wrote up a Websocket server using CometD/Bayeux. It's a ridiculously simple app - but went quite a long way in helping to understand the nitty gritties with putting up a Websocket server and CometD/Bayeux.  Thought that I'll put it up for reference - should help in getting a leg up on getting started with CometD.
+
+The sample's up on github at https://github.com/raghur/rest-websocket-sample
+
+Here's how to go about running it:
+
+1. clone the repo above 
+2. run mvn jetty:run
+3. Now browse to http://localhost:8080 to see the front page
+4. There are two parts to the app
+
+    1. A RESTful API at http://localhost:8080/user/{name} - hypothetical user info - get retrieves a user, put creates a user and delete obviously deletes the user.
+    2. The websocket server at localhost:8080/cometd has a broadcast channel at /useractivity which receives events whenever a user is added/deleted. The main page at http://localhost:8080 has a websocket client that updates the page with the user name whenever a user is added or removed.
+
+And here's the nuts and bolts:
+
+2. BayeuxInitializer - initializes the Bayeux Service and the EventBroadcaster. Puts the EventBroadcaster in the servlet context from where the RESTful service can pick it up to broadcast.
+1. EventBroadcaster - creates a broadcast channel in the ctor. Provides APIs to publish messages on this channel.
+3. HelloService - basic echo service taken from Maven archetype
+1. MyResource - the RESTful resource which responds to GET/PUT/DELETE - nothing major here. If a user is added or deleted, then it pushes a message on the broadcast channel by getting the EventBroadcaster instance from the servlet context.
+
+
+It's about as simple as you can get (beyond a Hello world or a chat example). Specifically, I wanted a sample where back end changes can be pushed to clients. 
+
+
+
