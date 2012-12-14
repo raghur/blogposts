@@ -1,0 +1,121 @@
+"=========== Meta ============
+" StrID : 576
+" Title : Rewriting history with Git
+" Slug  : Rewriting-history-with-Git
+" Cats  : Uncategorized
+" Tags  : git, HOWTO, tips
+"=============================
+" EditType   : post
+" EditFormat : Markdown
+" TextAttach : wpid583-vimrepress_50ca199f_mkd.odt
+"========== Content ==========
+
+What's this about rewriting history?
+-------------------------------
+While developing any significant piece of code, you end up making a lot of incremental advances. Now, it'll be ideal
+if you are able to save your state at each increment with a commit and then proceed forward. This gives you the freedom to try out approaches, go in one way or the other and at each point have a safe harbor to return to. However, this ends up with your history looking messy and folks whom you're collaborating with have to follow your mental drivel as you slowly built up the feature.
+	Now imagine if you could do incremental commits but at the same time, before you share your epic with the rest of the world, were able to clean up your history of commits by reordering commits, dropping useless commits, squashing a few commits together (remove those 'oops missed a change' commits) and clean up your commit messages and so on and then let it loose on the world!
+Git's interactive rebase lets you do exactly this!!!
+
+git rebase --interactive to the rescue
+-------------------------------
+Git's magic incantation to rewrite history is `git rebase -i`. This takes as argument a commit or a branch on which to apply the effects of rewritten rebase operation
+
+Lets see it in operation:
+
+### squashing and reordering commits
+
+Let's say you made two commits A and B. Then you realize that you've missed out something which should really have been a part of A, so you fix that with a 'oops' commit and call it C. So your history looks like A->B->C whereas you'd like it to look like AC->B
+
+Let's say your history looks like this:
+
+[sourcecode language="text"]
+    bbfd1f6 C                           # ------> HEAD
+    94d8c9c B                           # ------> HEAD~1
+    5ba6c52 A                           # ------> HEAD~2
+    26de234 Some other commit           # ------> HEAD~3
+    ....
+    ....
+[/sourcecode]
+
+You'd like to fix up all commits after 'some other commit' - that's HEAD~3.  Fire up `git rebase -i HEAD~3`
+
+The HEAD~3 needs some explaining - you made 3 commits A, B and C. You'd like to rewrite history on top of the 4th commit before HEAD (HEAD~3). The commit you specify as the base in rebase is not included. Alternatively, you could just pick up the SHA1 for the commit from log and use that in your rebase command.
+
+
+Git will open your editor with something like this:
+
+[sourcecode language="text"]
+    pick 5ba6c52 A
+    pick 94d8c9c B
+    pick bbfd1f6 C
+    # Rebase 7a0ff68..bbfd1f6 onto 7a0ff68
+    #
+    # Commands:
+    #  p, pick = use commit
+    #  r, reword = use commit, but edit the commit message
+    #  e, edit = use commit, but stop for amending
+    #  s, squash = use commit, but meld into previous commit
+    #  f, fixup = like "squash", but discard this commit's log message
+    #  x, exec = run command (the rest of the line) using shell
+    #
+    # These lines can be re-ordered; they are executed from top to bottom.
+    #
+    # If you remove a line here THAT COMMIT WILL BE LOST.
+    #
+    # However, if you remove everything, the rebase will be aborted.
+    #
+    # Note that empty commits are commented out
+[/sourcecode]
+
+Basically, git is showing you the list of commands it will use to operate on all commits since your starting point. Also, it gives instructions on how to pick (p), squash (s)/fixup (f) or reword(r) each of your commits. To modify the history order, you can simply reorder the lines. If you delete any line altogehter, then that commit totally skipped (However, if you delete all the lines, then the rebase operation is aborted).
+
+So, here we tell that we want to pick A, squash commit C into it and then pick commit B.
+
+[sourcecode language="text"]
+    pick 5ba6c52 A
+    squash bbfd1f6 C
+    pick 94d8c9c B
+[/sourcecode]
+
+Save the editor and Git will perform the rebase. It will then pop up another editor window allowing you to give a single commit message for AC (helpfully pre filled with the two original messages for A and C). Once you provide that, git rebase proceeds and now your history looks like AC->B as you'd like it to be.
+
+Miscellaneous tips
+-------------------------------
+
+### Using GitExtensions
+
+1. If you use Git Extensions, you can do the rebase though it's not very intuitive. First, select the commit on which you'd like the interactive rebase. Right click and choose 'Rebase on this'. 
+    ![Selecting the commit](https://dl.dropbox.com/s/iwrciv4fim7jix3/SelectRebaseGitExt.png?dl=1)
+2. This opens the rebase window. In this window, click 'Show Options'
+    ![Rebase window](https://dl.dropbox.com/s/zvpc8mgwbv5stqk/RebaseWindow.png?dl=1)
+3. In the options, select 'Interactive rebase' and hit the 'Rebase' button on the right
+4. You'll get an editor window populated similarly.
+
+If the editor window comes up blank then the likely cause is that you have both cygwin and msysgit installed and GitExtensions is using the cygwin version of git. Making sure that msysgit is used in GitExtensions will avoid any such problems.
+
+### Using history rewriting
+Rewrite history only for what you have not pushed. Modifying history for something that's  shared with others is going to confuse the hell out of them and cause global meltdown. You've been warned.
+
+
+### Handling conflicts
+You could end up with a conflict - in which case you can simply continue the rebase after resolving the conflicts  with a `git rebase --continue`
+
+### Aborting
+Sometimes, you just want the parachute to safety in between a rebase. Here, the spell to use is `git rebase --abort`
+
+
+
+
+Final words
+-------------------------------
+Being able to rewrite history is a admittedly a powerful feature. It might even feel a little esoteric at first glance. However, embracing it gives you the best of both worlds - quick, small commits and a clean history. 
+
+Another and probably more important effect is that instead of 'waiting to get things in shape' before committing, commits happen all the time. Trying out that ingenious approach that's still taking shape in your head isn't a problem now since you always have a point in time to go  back to in case things don't work out. 
+
+Being able to work 'messily' and commit anytime and being secure in the knowledge that you'd be able fix up stuff later provides an incredible amount of freedom of expression and security. Avoiding the wasted mental cycles spent around planning things carefully before you attack your codebase is worth it's weight in gold!!!
+
+
+
+
+
