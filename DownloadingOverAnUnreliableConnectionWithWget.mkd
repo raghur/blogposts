@@ -1,0 +1,46 @@
+"=========== Meta ============
+" StrID : 620
+" Title : Downloading over an unreliable connection with Wget
+" Slug  : Downloading-over-an-unreliable-connection-with-Wget
+" Cats  : HOWTO
+" Tags  : Rants, Wget, Tips, Howto
+"=============================
+" EditType   : post
+" EditFormat : Markdown
+" TextAttach : wpid625-vimrepress_51203d80_mkd.odt
+"========== Content ==========
+
+### Rant - BSNL!!!
+
+This is a part rant, part tip - so bear with me... My broadband connection absolutely sucks over the past week. I upgraded from 2Mbps with a download limit to a 4Mbps with unlimited downloads and since then it has been nothing but trouble... Damn BSNL!! I've probably registered about 30 odd complaints with them to no avail. If there was a Nobel for bad customer service, BSNL would probably win it by a mile. Some examples:
+
+1. They'll call to find out what the complaint it and even when I explain what's happening, they hardly hear me out at all.
+1. Either they call up and say 'We have fixed it at the Exchange' and nothing has changed
+1. They automatically close the complaints :) 
+
+Guess they find it too troublesome that someone who's paying for broadband actually expects the said broadband connection to work reliably!
+
+Anyway, Airtel doesn't seem to be any better - they need 10 days to set up a connection and when I was on the phone with them, they didn't seem too interested in increasing their customer count by 1 :).
+
+I also tried calling an ISP called YouBroadband after searching some of the Bangalore forums for good ISP providers. They promised a call in 24 hours  to confirm if they have coverage in my area and it was feasible for them to set up the connection and that was 48 hours ago!
+
+At work, I've heard good things about ACTBroadband and they have some ads in TOI as well, but they said they don't have coverage in my area :(.
+
+### So how do you download
+
+Today I needed to download something and doing it from the browser failed each time since my DSL connection would blink out in between!
+
+After ranting and raving and writing the first part above and still mentally screaming at BSNL, decided to do something about it... Time for trusty old `wget` - surely, it'll have something?
+
+Turns out that guess was a 100% on the money... it took a few tries experimenting with different options, but finally worked like a charm
+
+[sourcecode language="bash"]
+wget -t0 --waitretry=5 -c -T5 url
+    where
+    -t0 - unlimited retries
+    --waitretry - seconds to wait between retries
+    -c resume partially downloaded files
+    -T5 - set all timeouts to 5 seconds. Timeouts here are connect timeout, read timeout and dns timeout
+[/sourcecode]
+
+
