@@ -1,3 +1,4 @@
+<!--
 "=========== Meta ============
 " StrID : 642
 " Title : Upgraded to Linux
@@ -9,6 +10,7 @@
 " EditFormat : Markdown
 " TextAttach : wpid644-vimrepress_5205e822_mkd.odt
 "========== Content ==========
+-->
 
 So after suffering tons of crashes (likely due to AMD drivers) and general system lagginess, I finally decided to ditch windows and move to linux full time. 
 This is on my home desktop which is more a family computer than something that only I would use.
