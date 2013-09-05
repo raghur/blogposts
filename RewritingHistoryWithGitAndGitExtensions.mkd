@@ -29,14 +29,14 @@ Let's say you made two commits A and B. Then you realize that you've missed out 
 
 Let's say your history looks like this:
 
-[sourcecode language="text"]
+```bash
     bbfd1f6 C                           # ------> HEAD
     94d8c9c B                           # ------> HEAD~1
     5ba6c52 A                           # ------> HEAD~2
     26de234 Some other commit           # ------> HEAD~3
     ....
     ....
-[/sourcecode]
+```
 
 You'd like to fix up all commits after 'some other commit' - that's HEAD~3.  Fire up `git rebase -i HEAD~3`
 
@@ -45,7 +45,7 @@ The HEAD~3 needs some explaining - you made 3 commits A, B and C. You'd like to 
 
 Git will open your editor with something like this:
 
-[sourcecode language="text"]
+```bash
     pick 5ba6c52 A
     pick 94d8c9c B
     pick bbfd1f6 C
@@ -66,25 +66,21 @@ Git will open your editor with something like this:
     # However, if you remove everything, the rebase will be aborted.
     #
     # Note that empty commits are commented out
-[/sourcecode]
-
+```
 Basically, git is showing you the list of commands it will use to operate on all commits since your starting point. Also, it gives instructions on how to pick (p), squash (s)/fixup (f) or reword(r) each of your commits. To modify the history order, you can simply reorder the lines. If you delete any line altogehter, then that commit totally skipped (However, if you delete all the lines, then the rebase operation is aborted).
 
 So, here we tell that we want to pick A, squash commit C into it and then pick commit B.
 
-[sourcecode language="text"]
-    pick 5ba6c52 A
-    squash bbfd1f6 C
-    pick 94d8c9c B
-[/sourcecode]
-
+```bash
+pick 5ba6c52 A
+squash bbfd1f6 C
+pick 94d8c9c B</code>
+```
 Save the editor and Git will perform the rebase. It will then pop up another editor window allowing you to give a single commit message for AC (helpfully pre filled with the two original messages for A and C). Once you provide that, git rebase proceeds and now your history looks like AC->B as you'd like it to be.
 
 Miscellaneous tips
 -------------------------------
-
 ### Using GitExtensions
-
 1. If you use Git Extensions, you can do the rebase though it's not very intuitive. First, select the commit on which you'd like the interactive rebase. Right click and choose 'Rebase on this'. 
     ![Selecting the commit](https://dl.dropbox.com/s/iwrciv4fim7jix3/SelectRebaseGitExt.png?dl=1)
 2. This opens the rebase window. In this window, click 'Show Options'
@@ -93,19 +89,12 @@ Miscellaneous tips
 4. You'll get an editor window populated similarly.
 
 If the editor window comes up blank then the likely cause is that you have both cygwin and msysgit installed and GitExtensions is using the cygwin version of git. Making sure that msysgit is used in GitExtensions will avoid any such problems.
-
 ### Using history rewriting
 Rewrite history only for what you have not pushed. Modifying history for something that's  shared with others is going to confuse the hell out of them and cause global meltdown. You've been warned.
-
-
 ### Handling conflicts
 You could end up with a conflict - in which case you can simply continue the rebase after resolving the conflicts  with a `git rebase --continue`
-
 ### Aborting
 Sometimes, you just want the parachute to safety in between a rebase. Here, the spell to use is `git rebase --abort`
-
-
-
 
 Final words
 -------------------------------
