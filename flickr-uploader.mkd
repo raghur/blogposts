@@ -1,0 +1,26 @@
+<!--
+PostId: 2851721374324553212
+Title    : Flickr-Uploader is like Google+ Autobackup - only at full resolution.
+Labels   : android, tips
+Format	 : markdown
+-->
+### Auto backup
+It's been some time since I've used anything other than my Nexus 4 to take photos. And after a recent scare where I thought I'd
+lost 10 years worth of memories after a hard disk failure, I've been very diligent about having one or two backups.
+
+Google+ does a great job of automatically uploading photos and then applying the auto awesome effects - but just with one
+downside - if you want to upload photos at full resolution, it will most probably count against your storage quota.
+
+With Flickr offering 1 TB of free storage, I wanted to make sure that my photos get uploaded to Flickr as well. automatically.
+And private by default. And only on wifi (don't like bill shock). And when plugged in (no point if I can't take pics because the phone's dead from uploading). And let me do manual uploads while at it (you know...). You get the drift of my ideal feature set :).
+
+Searched through the play store and its really really hard to find an app that does this well.
+The official flickr client doesn't (good luck with the adoption guys) and while a few other apps state that they have bulk
+upload features, none of them were doing autobackup - other than [Flickr Uploader](https://play.google.com/store/apps/details?id=com.rafali.flickruploader). It's available on a 7 day trial and the reviews were encouraging... thought I'd give it a shot.
+
+Installed, authorized flickr - which errored out the first time but worked the next AND BOOM... that's it. The next time I took pics,
+now they're going to Flickr as well and it comes up with a nice notification. Super!
+
+Additional props to the author - he's open sourced the project as well on github!
+
+
