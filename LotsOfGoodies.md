@@ -8,19 +8,19 @@ Since the [Template SDK](https://www.aditicloud.com/documentation/brewmaster?pag
 But then, I digress; I wanted to use this post to introduce new features that we pushed out to [Brewmaster](http://www.aditicloud.com) in the last few weeks. So, without further ado, let's jump in:
 
 ###Teardown deployed infrastructure
-Deployed an environment using Brewmaster and now want to get rid of it? Absolutely. This has been one of the most asked for features - but one of those things that are hard to get right. What if you've created your own tables in a storage account provisioned by Brewmaster? At one end, there's the convenience of being able to teardown a complete deployment and everything that it entails. On the other hand, there is genuine concern we could end up doing more damage than good - especially if the end user doesn't fully understand the implications of a teardown. 
+Deployed an environment using Brewmaster and now want to get rid of it? Absolutely. This has been one of the most asked for features - but one of those things that are hard to get right. What if you've created your own tables in a storage account provisioned by Brewmaster? At one end, there's the convenience of being able to teardown a complete deployment and everything that it entails. On the other hand, there is genuine concern we could end up doing more damage than good - especially if the end user doesn't fully understand the implications of a teardown.
 
 We've finally settled on a middle ground that I think will be mostly appropriate for everyone. When you teardown an environment, we show you a preview and you have to explicitly select what you need to teardown.
 
-1. Head over to the deployment details page and click the teardown button. 
+1. Head over to the deployment details page and click the teardown button.
 ![Teardown button](images/teardown_btn.png)
-2. You will see a preview of the infrastructure deployed by the template and you can select resources you'd like to delete. Select and hit 'Proceed'. 
+2. You will see a preview of the infrastructure deployed by the template and you can select resources you'd like to delete. Select and hit 'Proceed'.
 ![Preview](images/teardown_preview.png)
 3. You will be asked to confirm once more and then Brewmaster starts deleting infrastructure from your azure subscription with logs showing up under the deployment.
 ![Logs](images/teardown_logs.png)
 
 ###Clone a deployment
-Just deployed SSAO to your dev environment and now need to deploy it to your production subscription with the almost all of the same parameter values? Earlier, you had to create a new deployment configuration and manually enter in all the values while keeping track of the ones that should be changed. 
+Just deployed SSAO to your dev environment and now need to deploy it to your production subscription with the almost all of the same parameter values? Earlier, you had to create a new deployment configuration and manually enter in all the values while keeping track of the ones that should be changed.
 
 Not any longer!
 
@@ -30,7 +30,7 @@ You can now start with a deployment (or a configuration) and create a new config
 
 
 ###Use a different commit at deployment
-Earlier, when you deploy a registered template, it would default to using the commit used while registering the template. This proved a little problematic when you start a new branch and then realize that to use that branch, you have to register the template again. 
+Earlier, when you deploy a registered template, it would default to using the commit used while registering the template. This proved a little problematic when you start a new branch and then realize that to use that branch, you have to register the template again.
 Not so anymore.
 Now you when you start a deployment, you have the option to provide a branch name or a commit sha and Brewmaster will pull that revision for the deployment!
 
@@ -51,7 +51,7 @@ A new Elasticsearch template has been added. You can now have a scalable, Azure 
 
 
 ## Till next time
-That's it for now, folks. We've got a lot of good things lined up - template sharing and discovery, private template repositories and more. Feel free to drop us line if you have a feature or idea that you'd like to see. Or  if you just want to tell us how we're doing! Write to us at [support@aditicloud.com](mailto:support@aditicloud.com) 
+That's it for now, folks. We've got a lot of good things lined up - template sharing and discovery, private template repositories and more. Feel free to drop us line if you have a feature or idea that you'd like to see. Or  if you just want to tell us how we're doing! Write to us at [support@aditicloud.com](mailto:support@aditicloud.com)
 
 
 
