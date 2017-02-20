@@ -3,12 +3,13 @@ PostId: 2061811919130731355
 Title    : Kubernetes cluster visualizer
 Labels   : kubernetes, visualization, tips
 Format	 : markdown
+Published: true
 -->
 
 [GCP live k8s visualizer](https://github.com/brendandburns/gcp-live-k8s-visualizer) is a cool project to visualize
 your k8s cluster. As pods, services & other resources come in and go out, it shows a visual map of your cluster
 
-![gcp live k8s visualizer](http://kubecloud.io/content/images/2016/02/kubernetes-animation-tid.gif){width=100%}
+![gcp live k8s visualizer](https://i.imgur.com/fcrtlwI.gif){width=100%}
 
 The animation above is from [this guide](http://kubecloud.io/guide-setting-up-visualizer-for-kubernetes/).
 Followed the instructions there in but ran into javascript null errors ![error](https://i.imgur.com/SyAhXFG.png){width=100%}.
