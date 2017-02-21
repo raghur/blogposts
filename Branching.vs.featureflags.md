@@ -4,7 +4,7 @@ Title    : Feature branches vs feature flags
 Labels   : devops, microservices
 Format	 : markdown
 Published: true
-filters: c:\users\raghuramanr\AppData\Roaming\npm\mermaid-filter.cmd
+filters: mermaid-filter.cmd
 -->
 Of late, we've been working with more and more customers adopt a more DevOps friendly culture and engineering practices.
 While customers love what they hear about DevOps, esp that it lets you ship features sooner out of the door and shorten

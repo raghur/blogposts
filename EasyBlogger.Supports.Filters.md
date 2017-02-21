@@ -4,7 +4,7 @@ Title    : EasyBlogger now supports pandoc filters
 Labels   : easyblogger
 Format	 : markdown
 Published: true
-filters: c:/users/raghuramanr/AppData/Roaming/npm/mermaid-filter.cmd
+filters: mermaid-filter.cmd
 -->
 I just pushed version 1.1.0 of [EasyBlogger](http://github.com/raghur/easyblogger) to pypi. Notable changes are that
 it now exposes ability to set [pandoc filters](https://github.com/jgm/pandoc/wiki/Pandoc-Filters).
@@ -29,10 +29,10 @@ note that you must specify that it's a mermaid syntax with ` ~~~mermaid ` as the
 
 You get an image like this in your blog:
 
-~~~mermaid
+```mermaid
 graph LR
     A --> B
-~~~
+```
 
 In fact, even this blog post was generated from mermaid source itself :)
 
