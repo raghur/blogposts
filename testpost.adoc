@@ -1,0 +1,151 @@
+////
+PostId: 1995162400145930257
+Title    : Posting with AsciiDoc
+Labels   : asciidoc, blogging
+Format   : asciidoc
+Published: false
+////
+
+
+=== This is the title - let's see if edit works
+
+This is a simple paragraph of text that I'm typing. I'm going to try some simple things like
+inline formatting of text to _italics_, *bold* and ~subscript~, ^supersscript^, *_bold italics_*,
+`monospace`, `_monospace italics_`, `*monospace bold*`, `*_monospace bold italics_*`
+
+=== Another H3
+
+.NOTE header
+This is a note header.
+
+Three single quotes produces a hr/
+
+'''
+
+=== Lists now
+
+* bullet 1
+* bullet 2
+
+
+This is a numbered list:
+
+1. number 1
+2. number 2
+3. numebr 3
+
+Now we must try nested Lists
+
+*   item 1 - this is with some long text
+    that can go on multi line
+    with a hanging indent
+*   item 2 - again text with multi lines
+    that can go over
++
+more paragraph to be added over.
++
+THis is an indented text for item 2
+* this is another item.
+
+Cloud Providers::
+  PaaS:::
+    . OpenShift
+    . CloudBees
+  IaaS:::
+    . Amazon EC2
+    . Rackspace
+* Every list item has at least one paragraph of content,
+  which may be wrapped, even using a hanging indent.
++
+Additional paragraphs or blocks are adjoined by putting
+a list continuation on a line adjacent to both blocks.
++
+list continuation:: a plus sign (`{plus}`) on a line by itself
+
+* A literal paragraph does not require a list continuation.
+
+ $ gem install asciidoctor
+
+
+=== Links
+
+https://github.com/raghur/easyblogger
+https://github.com/raghur/easyblogger[link text]
+
+Let's add an internal link to <<H2>>
+
+
+=== Source Code
+Let's now add some source code
+
+[source,powershell,numbered]
+:hightlightjs-theme: solarized_dark
+----
+param (
+    [string] $action,
+    [string] $resourcegroup,
+    [string] $vmname
+)
+
+function Send-Push{
+    param(
+        [string] $action,
+        [string] $vmname,
+        [string] $message # <1>
+    )
+
+    $uri = 'https://api.pushover.net/1/messages.json'
+        $parameters = @{
+            token = "yourapptoken"
+            user = "yourusertoken"
+            message = $message
+            title = "$vmname - $action"
+        }
+        $parameters | Invoke-RestMethod -Uri $uri -Method Post
+    }
+$creds = Get-AutomationPSCredential -Name 'automation-creds'
+Add-AzureRmAccount -Credential $creds # <2>
+if ($action -eq "stop") {
+    "Stopping VM $vmname in resource group $resourcegroup..."
+    Stop-AzureRmVM  -ResourceGroupName $resourcegroup -Name $vmname -force
+
+    Send-Push "Stopped"  $vmname  "completed successfully"
+} else  {
+    $weekday = (Get-Date).DayOfWeek
+    if ( $weekday -eq 'Saturday' -or $weekday -eq 'Sunday' ) {
+        Send-Push "" $vmname "It's a weekend - skipping starting VM"
+        return
+    }
+    "Starting VM $vmname in resource group $resourcegroup..."
+    Start-AzureRmVM  -ResourceGroupName $resourcegroup -Name $vmname
+
+    Send-Push $action $vmname "VM started"
+}
+----
+<1> Callout 1
+<2> callout 2
+
+kbd:[Ctrl-C]
+
+[mermaid]
+--------
+graph LR
+  A --> B
+--------
+
+
+
+[mermaid]
+--------
+gitGraph:
+    commit
+    branch newbranch
+    checkout newbranch
+    commit
+    commit
+    checkout master
+    commit
+    commit
+    merge newbranch
+
+--------

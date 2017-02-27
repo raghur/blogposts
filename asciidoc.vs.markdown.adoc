@@ -1,0 +1,47 @@
+////
+PostId: 2944157009194794987 
+Title    : AsciiDoc vs Markdown
+Labels   : asciidoc, markdown, blogging
+Format	 : asciidoc
+Published: True
+////
+
+I've been a markdown user almost exclusively - more due to github and stackoverflow popularizing the format. Markdown
+is great for lightweight markup and with excellent tools like Pandoc, it's a joy to produce good looking technical docs.
+Suffice to say that I've been taken with markdown and even use it to produce word documents and such. 
+
+While Markdown is great, it has it's share of niggles - try to go beyond the basics and want some advanced features and
+you get into trouble. Want tables? Or want to include diagrams generated from ascii art? It's all a hit or miss depending
+on which Markdown implementation  you're using. Ditto for things like nested lists and lists with sub paras and whole lot 
+of other niggles where each different Markdown implementation may end up behaving differently. There have been some efforts
+to have a rigourous spec but I don't think things went anywhere with http://CommonMark.org[CommonMark] - atleast, I don't 
+see it used much anywhere.
+
+For the latter problem of wanting to include diagrams, I wrote https://github.com/raghur/mermaid-filter[mermaid-filter]
+and while it's super useful, it works only with https://github.com/knsv/mermaid[mermaid]. If you want to use `graphviz`
+or something like that, sorry - you're out of luck.
+
+I've resigned myself to Pandoc's version of markdown - since I end up using pandoc almost always to convert to other formats.
+
+Wanting a better lightweight markup format, I spent sometime looking at alternatives this weekend and came upon 
+`asciidoc` - and I'm just wowed! It pretty much ticks all the boxes in terms of all the niggles I have with Markdown 
+and it's not so different from markdown either so that transitioning to AsciiDoc is a non issue.
+
+AsciiDoc has the following over Markdown:
+
+. Supports advanced formatting natively.
+.. http://asciidoctor.org/docs/user-manual/#source-code-blocks[Native code formatting] with pluggable syntax highlighters.
+.. http://asciidoctor.org/docs/user-manual/#callouts[code call outs] - oh so useful.
+.. http://asciidoctor.org/docs/user-manual/#xref[Cross references]
+.. http://asciidoctor.org/docs/user-manual/#tables[Tables]
+. Rigourous spec
+. Smart, natively extensible
+.. For ex: want diagrams? A http://asciidoctor.org/docs/asciidoctor-diagram/#creating-a-diagram[whole bunch are supported]
+
+It's miles ahead of Markdown, IMO - so much so that I'm jumping ship :)
+
+So, in a rush of enthusiasm, I've updated https://github.com/raghur/easyblogger[EasyBlogger] with `asciidoc` 
+support and pushed a release out to PyPI. This also means that I would probably not need 
+https://github.com/raghur/mermaid-filter[mermaid-filter] anymore - but hey, you should see better looking posts from 
+me here.
+

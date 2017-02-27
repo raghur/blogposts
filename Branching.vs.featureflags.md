@@ -57,6 +57,3 @@ to handle cross functional changes that affect multiple services without impacti
 are only part of the solution - consider feature flagging as well so that you can build cross functional features in stages.
 Also, keep in mind that Feature flags aren't free - they add their own burden - but with a good engg governance around
 limiting the number of feature flags and how they're phased out, you should be in good hands.
-
-
-
