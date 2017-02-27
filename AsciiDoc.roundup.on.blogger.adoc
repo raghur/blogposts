@@ -140,3 +140,10 @@ What is the answer to the Ultimate Question?:: 42
 | Cell in position C2R1 | Cell in position C2R2 | cell in position C3R2
 
 |===
+
+== Include content from uri
+
+[source, bash]
+----
+include::https://gist.githubusercontent.com/raghur/837ba73ea0e82f59f5cde40941a592a1/raw/e3f3cd6ef7dcd79079e951c1831b38afc21636ec/scalek8sdeployments.sh[]
+----
