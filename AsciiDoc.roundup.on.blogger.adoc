@@ -1,0 +1,142 @@
+////
+PostId: 3680603736077489975	
+Title    : Asciidoc feature tour on Blogger
+Labels   : asciidoc, blogger
+Format	 : asciidoc
+Published: true
+////
+
+So this post is more a memory aid for me rather than anything as I transition over to  using 
+`asciidoc` for my blogging/general technical writing needs.
+Content is almost verbatim from the asciidoc online user manual - but since I have to wrangle blogger css a bit,
+this is basically to check if everything works as advertised on the tin styling wise.
+
+== Code with callouts
+
+[source, csharp]
+-----
+using log4net;
+using log4net.Config;
+using log4net.Core; // <1>
+
+namespace ElasticSearchLogImporter
+{
+    class Program
+    {
+        private static readonly ILog LOGGER = LogManager.GetLogger(typeof(Program));
+        static void Main(string[] args) // <2>
+        {
+            XmlConfigurator.ConfigureAndWatch(new FileInfo(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile));
+            ConsoleApplication.RunProgram<CommandLineOptions>(Start);
+        }
+    }
+}
+-----
+<1> This is callout 1
+<2> This is callout 2
+
+
+== Images
+
+[listing]
+image::url[alt]
+
+[listing]
+image:url[alt] -- inline version
+
+image::https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg[tux, 250, 250]
+
+You can find image:https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg[Linux,25,35] everywhere these days.
+
+== Titled block
+
+
+.Note
+- list with title
+- another item
+
+== Quotes
+
+[quote, Albert Einstein]
+A person who never made a mistake never tried anything new.
+
+
+[, Richard M. Nixon]
+""
+When the President does it, that means that it's not illegal.
+""
+
+"I hold it that a little rebellion now and then is a good thing,
+and as necessary in the political world as storms in the physical."
+-- Thomas Jefferson, Papers of Thomas Jefferson: Volume 11
+
+== Admonitions
+
+
+NOTE: An admonition paragraph draws the reader's attention to
+auxiliary information.
+Its purpose is determined by the label
+at the beginning of the paragraph.
+
+
+TIP: Pro tip...
+
+IMPORTANT: Don't forget...
+
+WARNING: Watch out for...
+
+CAUTION: Ensure that...
+
+[IMPORTANT] 
+.Feeding the Werewolves
+==== 
+While werewolves are hardy community members, keep in mind the following dietary concerns:
+
+. They are allergic to cinnamon.
+. More than two glasses of orange juice in 24 hours makes them howl in harmony with alarms and sirens.
+. Celery makes them sad.
+====
+
+== Sidebars
+
+.AsciiDoc history 
+**** 
+AsciiDoc was first released in Nov 2002 by Stuart Rackham.
+It was designed from the start to be a shorthand syntax
+for producing professional documents like DocBook and LaTeX.
+****
+
+== Checklists
+
+.Non interactive checkboxes
+- [*] checked
+- [x] also checked
+- [ ] not checked
+-     normal list item
+
+//^
+
+.Interactive checkboxes
+[options=interactive]
+- [*] checked
+- [x] also checked
+- [ ] not checked
+-     normal list item
+
+== Q & A style
+
+[qanda]
+What is Asciidoctor?::
+  An implementation of the AsciiDoc processor in Ruby.
+What is the answer to the Ultimate Question?:: 42
+
+== Tables
+
+[cols="50,20,30", options=header, frame=all]
+|===
+| header 1|header 2|header 3
+
+| Cell in position C1R1 | Cell in position C2R1 | cell in position C3R1
+| Cell in position C2R1 | Cell in position C2R2 | cell in position C3R2
+
+|===
