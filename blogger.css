@@ -461,3 +461,5 @@ color: #000;
 }
 h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {margin-top:0px;}
 .column-right-inner {padding:0 !important}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class] {padding:0 !important;}
+p {margin-bottom: 0.5em; }
