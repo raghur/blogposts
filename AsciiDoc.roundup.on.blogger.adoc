@@ -60,11 +60,8 @@ You can find image:https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg[L
 [quote, Albert Einstein]
 A person who never made a mistake never tried anything new.
 
-
-[, Richard M. Nixon]
-""
-When the President does it, that means that it's not illegal.
-""
+"The only code without bugs is the code you never write"
+-- Unknown
 
 "I hold it that a little rebellion now and then is a good thing,
 and as necessary in the political world as storms in the physical."
@@ -77,7 +74,6 @@ NOTE: An admonition paragraph draws the reader's attention to
 auxiliary information.
 Its purpose is determined by the label
 at the beginning of the paragraph.
-
 
 TIP: Pro tip...
 
@@ -142,6 +138,12 @@ What is the answer to the Ultimate Question?:: 42
 |===
 
 == Include content from uri
+
+Use the include macro to pull in a gist inside a source block - like so:
+
+ include::https://gist.githubusercontent.com/raghur/837ba73ea0e82f59f5cde40941a592a1/raw/e3f3cd6ef7dcd79079e951c1831b38afc21636ec/scalek8sdeployments.sh[]
+
+which produces:
 
 [source, bash]
 ----
