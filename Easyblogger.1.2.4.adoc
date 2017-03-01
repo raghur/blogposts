@@ -1,0 +1,18 @@
+////
+PostId: 3695004733816540380	
+Title    : Easyblogger 1.2.4 released to PYPI
+Labels   : easyblogger
+Format	 : asciidoc
+Published: true
+////
+
+Just pushed out a minor update v1.2.4 to https://github.com/raghur/easyblogger[Easyblogger]
+
+This release now let's you get blog posts by url
+
+[source,bash]
+----
+# get a post by url
+$ easyblogger get -u "https://blog.rraghur.in/2015/06/js-development-2015.html"
+658290074469501527,JS development - 2015,http://blog.rraghur.in/2015/06/js-development-2015.html
+----
