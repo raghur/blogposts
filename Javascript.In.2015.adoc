@@ -1,0 +1,199 @@
+////
+Title       : JS development - 2015
+PostId      : 658290074469501527
+Labels      : Javascript
+Format      : asciidoc
+Published   : true
+////
+
+== Javascript in 2015
+
+If you're managing any sort web application development then you're
+going to manage how your front end is built and how well it stands up to
+change over time. Even if FE is not of your area of expertise or you
+generally hate having to do anything with the front end (typical of most
+folks who spend their time lower in the stack), it doesn't hurt to
+understand the space - especially if it's (or may become) your job to
+manage the software development.
+
+=== Javascript is all grown up
+
+First of all, for what started as a twiddly little scripting language to
+make text bold and change color, Javascript has come a really long way.
+With more and more 'complex' applications, Javascript code base rivals
+in size and complexity of your precious backend.
+
+=== Object Oriented
+
+Javascript has prototypical Object orientation. Most likely you already
+knew that... from your jQuery days. Well, now it's the norm. What's
+surprising though is the sheer number of FE engineers who don't seem to
+have grasped this yet enough to make it a part of their toolset. If
+you're going to do any sort of large scale development, a scalable
+development model that helps to manage complexity is necessary. OO JS
+will help you do that - but you'll need to get used to it. There are
+some tools below that'll present a more 'conventional' view of classes
+in JS below - so do think of those. However, you should understand what
+happens beneath the covers anyway.
+
+=== Module system
+
+As code base size increases, you need ways and means to split your files
+into libraries and include the libraries where you need them. With the
+entry of NodeJS and other js runtimes, the fact that you could write
+server side code in JS meant that this was even more critical.
+Javascript's gaping hole is that it doesn't let you split your
+application into components to manage complexity. Sure you could split
+them up into files, and then make sure that `script` tags are in the
+correct order on your page. That's not even a poor cousin to having well
+defined libraries with their own private scope. There were a number of
+different efforts to arrive at a module format - CommonJS and AMD
+(Asynchronous module definition). You also have ES6 (EcmaScript6)
+modules as well - this is a how modules will be supported natively in
+the next rev of Javascript. CommonJS is targeted at the server side
+usage:
+
+[source,javascript]
+----
+//fileA.js
+function into2(x) {
+   return x*2;
+}
+module.exports = into2;
+
+// fileB.js
+myfn = require('./fileA');
+console.log(myfn(2)); //prints 4
+----
+
+This works for server side js but you can't very well use this on a
+browser since browsers load scripts asynchronously. AMD is targeted
+usage is browsers and script loading and introduces a `define` function
+where a module lists it's dependencies which the script loader can
+ensure are loaded before evaluating the module.
+
+[source,javascript]
+----
+//fileA.js
+define(function() {
+    function into2(x) {
+       return x*2;
+    }
+    return into2;
+});
+
+//fileB.js
+
+define(['./fileA'], function(myfn) {
+    console.log(myfn(2)); //prints 4
+});
+----
+
+PS: Both module systems allow you to use modules of the other kind -
+`RequireJS` - the most well known script loader for browser usage will
+allow you to load modules in the `CommonJS` standard. Similarly,
+`Browserify` is a tool that lets you use `CommonJS` modules right in the
+browser by bundling all your scripts together.
+
+=== Package manager
+
+Once you have modules and modules have dependencies and versions and
+further dependencies of their own, you need a way of being able to a.
+Define your dependencies b. Publish your package to a central registry
+
+`npm` - the node package manager is one tool that satisfies this role -
+you define your dependencies in a `package.json` and the npm tool will
+go fetch your dependencies for you. Similarly, if you write your own
+package, `npm` will let you publish your package to a central
+repository.
+
+`npm` is just one package manager - there are others as well - like
+`jspm`. `npm` though is the de facto standard
+
+=== Linting
+
+As your apps grow in size, you need to catch errors early. There are a
+bunch of syntax checkers now for JS - `jslint`, `jshint` - a fork of
+`jslint` and `eslint`.
+
+=== Unit testing
+
+For complex applications, having good unit tests is almost always a
+must. There are a number of JS unit test
+frameworks(http://mochajs.org[mocha]) as well - as well as supporting
+tools for writing mocks, spies and stubs (http://sinonjs.org[sinon.js]),
+assertion frameworks(http://chaijs.com[chaijs],
+http://shouldjs.github.io/[should.js]) and so on. You also have the
+choice to write tests in the traditional xunit style or in the BDD
+style. In most cases, these tools are available as packages that you can
+`require`. You also have code coverage trackers and tools that can help
+you track how good your unit tests are. Finally, you'll eventually have
+to manipulate the dom somewhere - and testing that always used to be a
+pain. Now you have fast, headless browser in phantomjs that you can
+integrate with your tests.
+
+=== Task runners
+
+Once you've split your app into modules, you still need a way to have it
+all packaged together and delivered. Also, if you're using linting and
+unit testing, you probably want those tools to be run as well.
+Furthermore, for a client side usage, having lots of roundtrips with
+small payloads don't work well.
+
+`Grunt` is a build tool - think of it like `ant` for Javascript. You
+define tasks and tasks can have dependent tasks and so on. `Gulp` is the
+newer tool and it's USP is speed and parallelism utilizing streaming
+pipelines.
+
+=== Writing Better Javascript without writing Javascript
+
+Given Javascript's origins, it's prototypical inheritance and myriad of
+pitfalls, it's quite hard to 'do' Javascript correctly. What if you
+didn't have to? In the last few years, a number of options have surfaced
+that try to address Javascript's warts by having 'transpilers' that
+compile down to idiomatic Javascript:
+
+1.  Coffeescript - the original - inspired by Ruby and functional
+constructs and works well to cover JS's shortcomings. It's easy to pick
+up and learn and definitely makes writing idiomatic js easier. Focus is
+on brevity - so you might find it a little daunting at first. However,
+don't let that scare you away as the brevity actually helps after the
+initial hurdle (that's just my opinion though).
+2.  Typescript - Microsoft's Typescript is Javascript with types. The
+good thing is that valid javascript is also valid typescript. Provides
+compile time type checking and strong tooling especially on Visual
+Studio.
+3.  ES6 - the next rev of JS - addresses most of the problematic areas
+of JS (ES5). There are transpilers that will convert es6 code to es5.
+
+=== Grown up problems
+
+Now that the JS ecosystem is still developing, it has the same problem
+as any other space where things are in flux. There are established
+players, but new thoughts and approaches come up all the time that makes
+keeping up with things harder if you're not in it day in and day out.
+More so in the web dev field which is more prone to fads.
+
+=== Not your Dad's Javascript
+
+It's hard to summarize the landscape in a short post - but hopefully,
+this has enough direction markers to give you the lay of the land. One
+thing's sure - JS has grown way beyond what it was initially meant for
+and the growth hasn't been easy. However, things are coming together
+nicely and writing large Javascript heavy, complex apps can be both fun
+and rewarding if you treat it as you would any other large development
+effort.
+
+Finally, it's all about managing complexity with modularity, loose
+coupling, well defined interfaces and clear code and a good engineering
+workflow.
+
+== Postscript
+
+I've purposely stayed away from discussing specific app development
+frameworks - angularjs/backbone/ember/react or even more generically,
+SPA vs non SPA interfaces. Personally, I've found it more useful to have
+a good grounding on the platform than any specific framework - since the
+combinations will vary but the overall structure will be the same. For
+ex: if you pick Angular, then it comes with it's own suggested test
+runner(karma), it's own tools for for DI and so on.
