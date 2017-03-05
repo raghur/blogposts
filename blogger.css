@@ -440,24 +440,13 @@ margin-top:0px;
 .comments h4 {
 font: normal normal 20px Verdana, Geneva, sans-serif;
 }
-code  {
-margin: 0 2px;
-padding: 0px 5px;
-border: 1px solid #ddd;
-border-radius: 3px;
-background-color: #3f3f3f;
-font-family: FantasqueSansMonoRegular;
-color: lightgrey;
-}
 
-/*
-div.gist pre code {
-background-color: #f8f8f8;
-color: #000;
-}
-*/
 *:not(pre)>code {
-  color: #000;
+  margin: 0 2px;
+  padding: 0px 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: FantasqueSansMonoRegular;
 }
 h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {margin-top:0px;}
 .column-right-inner {padding:0 !important}
