@@ -28,6 +28,11 @@ Since neovim is now on master and changes are coming in fast and thick, I wrote
 a little powershell to update my neovim installation. Here it goes for your
 enjoyment (you need powershell v5 for this)
 
+**UPDATE - 2017-03-01** - The bug in question
+<https://github.com/neovim/neovim/issues/6145> is now fixed in Neovim windows
+builds. So in the script below you can leave out pulling  down neovim-qt
+separately
+
 ``` {.powershell}
 param (
     [string] $loc="d:\utils\"
