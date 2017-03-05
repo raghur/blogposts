@@ -1,0 +1,23 @@
+////
+PostId: 6284400887284280532	
+Title    : Proxy PAC file for work
+Labels   : Utilities, tips, Rants
+Format	 : asciidoc
+Published: true
+////
+
+Proxy pac file to switch proxy based on whether I'm connected to OpenVPN or not.
+
+Basically, OpenVPN IP is 10.8.0.6 and at home I have 192.168.1.xxx - so if either of those two are available, then I bypass
+proxy.
+
+[source,javascript]
+----
+include::https://gist.githubusercontent.com/raghur/7aba1d879d49f30e7c833875d79d966b/raw/a7fd22380dc06633b12fc88e258dde1cb3fdce89/proxy.pac[]
+----
+
+Put it someplace and in IE configure it with a `file://` url
+
+I really, really hate our proxy configuration at work!
+
+Also, proxy pac file support is really arcane... however, it does work without additional configuration/addons - so there's that.
